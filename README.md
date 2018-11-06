@@ -1,2 +1,2 @@
 # Favorite-Places
-Fullstack web appication 
+Fullstack web application 
