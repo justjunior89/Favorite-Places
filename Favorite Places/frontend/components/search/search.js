@@ -8,7 +8,7 @@ import BenchMap from '../bench_map/bench_map';
 const Search = ({ benches/*, minSeating, maxSeating, updateFilter */}) => (
   <div className="user-pane">
     <div className="left-half">
-      <h5>Click Map to Add Bench!</h5>
+      <h5>Click Map to add a favorite place!</h5>
       <BenchMap
         benches={benches}
         singleBench={false}

@@ -303,7 +303,7 @@ var App = function App() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     to: "/",
     className: "header-link"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, " yo ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_greeting_greeting_container__WEBPACK_IMPORTED_MODULE_3__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_7__["AuthRoute"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, " Favorite Places ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_greeting_greeting_container__WEBPACK_IMPORTED_MODULE_3__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_7__["AuthRoute"], {
     path: "/login",
     component: _session_form_login_form_container__WEBPACK_IMPORTED_MODULE_6__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_7__["AuthRoute"], {
@@ -382,22 +382,13 @@ function (_React$Component) {
 
   _createClass(BenchIndex, [{
     key: "componentDidMount",
-    value: function componentDidMount() {// console.log("Component Mounted");
-      // this.props.fetchBenches(
-      //   console.log("Inside fetchBenches")
-      // );
-      // console.log("What does this.props look like before mounted", this.props);
-    }
+    value: function componentDidMount() {}
   }, {
     key: "render",
     value: function render() {
-      console.log("In the render function", this.props);
-      console.log(this.props.benches);
       var bench = this.props.benches[0] || '';
       var description = bench.description || '';
-      return (// console.log(bench.description),
-        console.log('In the return block'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, description || "No Description")
-      );
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, description || "No Description");
     }
   }]);
 
@@ -438,6 +429,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var _util_marker_manager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/marker_manager */ "./frontend/util/marker_manager.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -460,6 +452,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var BenchMap =
 /*#__PURE__*/
 function (_React$Component) {
@@ -474,8 +467,7 @@ function (_React$Component) {
   _createClass(BenchMap, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var map = this.refs.map; // const mapDOMNode = this.refs.map;
-
+      var map = this.refs.map;
       var mapOptions = {
         center: {
           lat: 37.7758,
@@ -483,6 +475,7 @@ function (_React$Component) {
         },
         zoom: 13
       };
+      this.MarkerManager = new _util_marker_manager__WEBPACK_IMPORTED_MODULE_3__["default"](this.map);
       this.map = new google.maps.Map(map, mapOptions) || "";
     }
   }, {
@@ -639,7 +632,7 @@ var Search = function Search(_ref) {
     className: "user-pane"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "left-half"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Click Map to Add Bench!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_bench_map_bench_map__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Click Map to add a favorite place!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_bench_map_bench_map__WEBPACK_IMPORTED_MODULE_2__["default"], {
     benches: benches,
     singleBench: false
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_bench_index__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -675,8 +668,6 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state, _ref) {
   var match = _ref.match;
   var benchId = parseInt(match.params.benchId); // const benchId = 1;
-  // console.log(state.entities.benches[0]);
-  // console.log(benchId);
 
   return {
     benchId: benchId,
@@ -1207,6 +1198,46 @@ var fetchBench = function fetchBench(id) {
     }
   });
 };
+
+/***/ }),
+
+/***/ "./frontend/util/marker_manager.js":
+/*!*****************************************!*\
+  !*** ./frontend/util/marker_manager.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var MarkerManager =
+/*#__PURE__*/
+function () {
+  function MarkerManager(map) {
+    _classCallCheck(this, MarkerManager);
+
+    this.map = map;
+    this.markers = [];
+  } //
+
+
+  _createClass(MarkerManager, [{
+    key: "updateMarkers",
+    value: function updateMarkers(benches) {}
+  }]);
+
+  return MarkerManager;
+}(); //
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = (MarkerManager);
 
 /***/ }),
 

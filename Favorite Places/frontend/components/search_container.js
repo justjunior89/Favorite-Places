@@ -9,8 +9,8 @@ const mapStateToProps = (state, { match }) => {
 const benchId = parseInt(match.params.benchId);
 // const benchId = 1;
 
-// console.log(state.entities.benches[0]);
-// console.log(benchId);
+
+
 return {
     benchId,
     benches: state.entities.benches

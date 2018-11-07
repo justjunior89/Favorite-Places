@@ -22,22 +22,17 @@ import {fetchBenches,fetchBench} from '../actions/bench_actions.js';
 
 class BenchIndex extends React.Component {
   componentDidMount() {
-    // console.log("Component Mounted");
-    // this.props.fetchBenches(
-    //   console.log("Inside fetchBenches")
-    // );
-    // console.log("What does this.props look like before mounted", this.props);
+
   }
 
 render() {
-  console.log("In the render function",this.props);
-  console.log(this.props.benches);
+
   var bench = this.props.benches[0] || '';
   var description = bench.description || '';
 
   return(
-    // console.log(bench.description),
-    console.log('In the return block'),
+
+    
     <div>
       { description || "No Description" }
     </div>
