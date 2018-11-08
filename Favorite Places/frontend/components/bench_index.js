@@ -32,8 +32,8 @@ render() {
 
   return(
 
-    
-    <div>
+
+    <div className="description">
       { description || "No Description" }
     </div>
   );
