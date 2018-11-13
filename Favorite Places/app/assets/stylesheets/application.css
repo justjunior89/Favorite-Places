@@ -1,0 +1,90 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ ::-webkit-scrollbar {
+     width: 10px;
+ }
+
+ ::-webkit-scrollbar-track {
+     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+     border-radius: 10px;
+ }
+
+ .map {
+    width: 500px;
+    height: 500px;
+    float: left;
+    position: relative;
+    border: 2px solid black;
+    margin-left: 20px;
+  }
+
+  .head{
+    color: black;
+    font-size: 30px;
+    border-bottom: 1px solid yellow;
+    text-decoration: none;
+  }
+
+  .header-link:visited{
+    color: black;
+  }
+
+  .description {
+    font-size: 20px;
+    color: #CD8D1F;
+    display: flex;
+  }
+
+  .header-link {
+    font-family: 'Marker Felt', fantasy;
+    font-size: 15px;
+    text-decoration: none;
+    text-align: center;
+    pointer-events: none;
+    border-bottom: 1px solid yellow;
+  }
+  .description{
+    padding-left: 30px;
+  }
+  .login-signup {
+    text-decoration: none;
+    color:black;
+    text-align: right;
+    
+  }
+  .login-signup:visited{
+    color:black;
+  }
+  h5 {
+    color: black;
+    justify-content: center;
+    float:none;
+    margin-left: 200px;
+    align-content: center;
+    position: relative;
+  }
+
+  body {
+    background-color: #ECC866;
+    font-family: 'Impact', fantasy;
+  }
+  .login-form-box {
+    text-align: center;
+
+  }
+  .login-input {
+    height: 20px;
+  }
