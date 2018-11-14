@@ -15,4 +15,8 @@ login information. Only saving their user name and never storing
 their password. Rendering a google map to display all the pertinent stored data from
 the backend.
 
-##
+## Technical Challenges
+
+Becoming fluent in React-Redux and understanding the base fundamentals of
+the technology. How different states affect the overall layout of the UI
+and when/where to deploy core components to application structure.
