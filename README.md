@@ -5,7 +5,7 @@ traveling. The concept is to be able to tap into a community of travelers that
 have a passion for traveling. Users can log in and interact with the Google Map
 and pin there favorite places anywhere around the world, using Google Map's API.
 Keeping a local history of everyones favorite place for all to see. It includes a
-picture image and a brief description of each favorite place.
+picture image and a brief description of each favorite place. [Live Website](https://favorite-places-app.herokuapp.com/#/).
 
 ## System Overview
 
