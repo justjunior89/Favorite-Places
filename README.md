@@ -19,4 +19,5 @@ the backend.
 
 Becoming fluent in React-Redux and understanding the base fundamentals of
 the technology. How different states affect the overall layout of the UI
-and when/where to deploy core components to application structure.
+and when/where to deploy core components to application structure. understanding
+component lifecycles and their impact on the development of the application.
