@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; // TODO: fix the render problem that happens
 import { withRouter } from 'react-router-dom';
 
 class SessionForm extends React.Component {
@@ -45,7 +45,8 @@ class SessionForm extends React.Component {
           {this.renderErrors()}
           <div className="login-form">
             <br/>
-            <label>
+            <label>Username:
+              <br/>
               <input type="text"
                 placeholder="Enter username"
                 value={this.state.username}
@@ -54,7 +55,8 @@ class SessionForm extends React.Component {
               />
             </label>
             <br/>
-            <label>
+            <label>password:
+              <br/>
               <input type="password"
                 placeholder="Enter password"
                 value={this.state.password}
