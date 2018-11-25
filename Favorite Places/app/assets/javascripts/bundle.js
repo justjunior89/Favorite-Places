@@ -90,7 +90,7 @@
 /*!*******************************************!*\
   !*** ./frontend/actions/bench_actions.js ***!
   \*******************************************/
-/*! exports provided: RECEIVE_BENCHES, RECEIVE_BENCH, recieveBenches, receiveBench, fetchBenches, fetchBench */
+/*! exports provided: RECEIVE_BENCHES, RECEIVE_BENCH, recieveBenches, receiveBench, fetchBenches, fetchBench, createBench */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -101,6 +101,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveBench", function() { return receiveBench; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBenches", function() { return fetchBenches; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBench", function() { return fetchBench; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBench", function() { return createBench; });
 /* harmony import */ var _util_bench_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/bench_api_util */ "./frontend/util/bench_api_util.js");
 
 var RECEIVE_BENCHES = 'RECEIVE_BENCHES';
@@ -131,6 +132,13 @@ var fetchBench = function fetchBench(id) {
   return function (dispatch) {
     return _util_bench_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchBench"](id).then(function (payload) {
       return dispatch(receiveBench(payload));
+    });
+  };
+};
+var createBench = function createBench(bench) {
+  return function (dispatch) {
+    return _util_bench_api_util__WEBPACK_IMPORTED_MODULE_0__["createBench"](bench).then(function (newBench) {
+      return dispatch(receiveBench(newBench));
     });
   };
 };
@@ -333,6 +341,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 /* harmony import */ var _actions_bench_actions_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/bench_actions.js */ "./frontend/actions/bench_actions.js");
+/* harmony import */ var _bench_index_item__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./bench_index_item */ "./frontend/components/bench_index_item.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -352,68 +361,97 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 // ******************************************************************
-// render() {
-//   if (this.props.benches) {
-//     const benchIndexLis = this.props.benches.map((bench, index) => {
-//       return <BenchIndexItem bench={bench} key={bench.description + index}/>;
-//     });
-//     return (<ul>{benchIndexLis}</ul>);
-//   }
-// }
-//
-// }
-// export default BenchIndex;
-// *****************************************************
-// All working state
+// import React from 'react';
+// import BenchIndexItem from './bench_index_item.js';
 
 
- // import BenchIndexItem from './bench_index_item';
+
+
 
 var BenchIndex =
 /*#__PURE__*/
 function (_React$Component) {
   _inherits(BenchIndex, _React$Component);
 
-  function BenchIndex() {
+  function BenchIndex(props) {
     _classCallCheck(this, BenchIndex);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(BenchIndex).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(BenchIndex).call(this, props));
   }
 
   _createClass(BenchIndex, [{
     key: "componentDidMount",
-    value: function componentDidMount() {}
+    value: function componentDidMount() {
+      Object(_actions_bench_actions_js__WEBPACK_IMPORTED_MODULE_2__["fetchBenches"])();
+    }
   }, {
     key: "render",
     value: function render() {
+      // const bench = this.props.benches.map(function(one,idx) {
       var bench = this.props.benches[0] || '';
       var description = bench.description || '';
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "description"
-      }, description || "No Description");
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, description || "No Description"); // });
+      // return(
+      //     <div>
+      //       { bench.description }
+      //     </div>
+      // );
     }
   }]);
 
   return BenchIndex;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (BenchIndex); // ********************************************************************
+/* harmony default export */ __webpack_exports__["default"] = (BenchIndex); // *****************************************************
+// All working state
 // import React from 'react';
+// import { withRouter } from 'react-router-dom';
+// import {fetchBenches,fetchBench} from '../actions/bench_actions.js';
 // import BenchIndexItem from './bench_index_item';
 //
-// const BenchIndex = ({ benches }) => (
-//   <div>
-//     <h1>Benches: </h1>
-//     {benches.map(bench => (
-//       <BenchIndexItem
-//         bench={bench}
-//         key={bench.id}
-//       />
-//     ))}
-//   </div>
-// );
+// class BenchIndex extends React.Component {
+//   componentDidMount() {
 //
+//   }
+//
+// render() {
+//
+//   var bench = this.props.benches[0] || '';
+//   var description = bench.description || '';
+//
+//   return(
+//
+//
+//     <div className="description">
+//       { description || "No Description" }
+//     </div>
+//   );
+// }
+// }
 // export default BenchIndex;
+// ********************************************************************
+
+/***/ }),
+
+/***/ "./frontend/components/bench_index_item.js":
+/*!*************************************************!*\
+  !*** ./frontend/components/bench_index_item.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var BenchIndexItem = function BenchIndexItem(_ref) {
+  var bench = _ref.bench;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, bench.description);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (BenchIndexItem);
 
 /***/ }),
 

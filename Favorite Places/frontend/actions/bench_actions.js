@@ -26,3 +26,9 @@ export const fetchBench = id => dispatch => (
     dispatch(receiveBench(payload))
   ))
 );
+
+export const createBench = bench => dispatch => (
+  APIUtil.createBench(bench).then(newBench =>
+    dispatch(receiveBench(newBench)
+  ))
+);
